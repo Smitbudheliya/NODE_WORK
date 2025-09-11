@@ -1,5 +1,5 @@
 const express=require("express");
-const { loginPage, loginUser , logoutUser, forgotPassword, sendEmailWithOtp, verifyOtp, resetPassword , resetPasswordPage} = require("../controllers/authCtr");
+const { loginPage, loginUser , logoutUser, forgotPassword, sendEmailWithOtp, verifyOtp, resetPassword , resetPasswordPage,changePassword} = require("../controllers/authCtr");
 const { body } = require("express-validator");
 const routes=express.Router();
 
@@ -19,5 +19,5 @@ routes.post('/verify-otp',verifyOtp)
 routes.get('/verify-otp',verifyOtp)
 routes.post('/reset-password',resetPassword)
 routes.get('/resetPassword',resetPasswordPage)
-
+routes.get('/change-password',changePassword)
 module.exports=routes;

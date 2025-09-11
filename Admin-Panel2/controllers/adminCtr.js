@@ -8,7 +8,8 @@ const fs = require('fs');
 module.exports.admin = async(req,res) => {
    try {
     if(req.cookies.admin && req.cookies.admin._id){
-      return res.render('dashboards');
+      let admin  = req.cookies.admin
+      return res.render('dashboards',{admin});
     }else {
       return res.redirect('/');
     }
@@ -27,7 +28,8 @@ module.exports.admin = async(req,res) => {
  module.exports.addForm = async(req,res) => {
    try {  
       if(req.cookies.admin && req.cookies.admin._id){
-        return res.render('addAdmin');
+         let admin  = req.cookies.admin
+        return res.render('addAdmin', {admin});
      }else {
       return res.redirect('/');
      }
@@ -42,9 +44,8 @@ module.exports.admin = async(req,res) => {
 
  module.exports.viewForm = async(req,res) => {
     try{
-      
-       
         if(req.cookies.admin && req.cookies.admin._id){
+           let admin  = req.cookies.admin
            var search ="";
        if(req.query.search) {
         search = req.query.search
@@ -65,7 +66,7 @@ module.exports.admin = async(req,res) => {
       })
       console.log(adminData);
       return res.render('viewAdmin', {
-        adminData
+        adminData, admin
       });
        
     }else {
@@ -83,6 +84,7 @@ module.exports.admin = async(req,res) => {
     console.log(req.body);
     console.log(req.file);
     if(req.file){
+
         req.body.profile = req.file.filename;
         req.body.create_date = moment().format('YYYY-MM-DD HH:mm:ss A');
         req.body.update_date = moment().format('YYYY-MM-DD HH:mm:ss A');
@@ -139,10 +141,12 @@ module.exports.admin = async(req,res) => {
  module.exports.editAdmin = async(req,res) => {
   try{
      if(req.cookies.admin && req.cookies.admin._id){
+      let admin  = req.cookies.admin
       let adminData = await Admin.findById(req.params.adminId);
     if(adminData){
+      
       return res.render('updateAdmin',{
-        adminData
+        adminData, admin
       })
     }
     else {
@@ -172,6 +176,7 @@ module.exports.editAdminData = async (req, res) => {
     let adminData = await Admin.findById(req.params.adminId);
 
     if (!adminData) {
+      
       console.log("Admin not found");
       return res.redirect('/admin/viewPage');
     }

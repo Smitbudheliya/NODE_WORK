@@ -85,8 +85,8 @@ module.exports.sendEmailWithOtp = async (req,res) => {
 
     // yaha direct transporter ki jagah sendEmail() call karo
     let sendOtp = await sendEmail({
-      from: "divyangrawal257@gmail.com",
-      to: "divyangrawal257@gmail.com",
+      from: "budheliyasmit@gmail.com",
+      to: "budheliyasmit@gmail.com",
       subject: "OTP Verification ✔",
       text: `Your OTP is ${Otp}. OTP is valid only 5 minutes.`,
       html: `<b>Hello!</b> <p>Your OTP is <b>${Otp}</b>. OTP is valid only 5 minutes.</p>`,

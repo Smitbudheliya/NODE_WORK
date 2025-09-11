@@ -6,8 +6,8 @@ module.exports.sendEmail = async (message) => {
     port: 587,
     secure: false, 
     auth: {
-      user: "divyangrawal257@gmail.com",
-      pass: "wususumswsztunhr",
+      user: "budheliyasmit@gmail.com",
+      pass: "huyddyohtcckkqac",
     },
   });
 
