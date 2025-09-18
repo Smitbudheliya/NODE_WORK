@@ -1,23 +1,29 @@
-const express=require("express");
-const { loginPage, loginUser , logoutUser, forgotPassword, sendEmailWithOtp, verifyOtp, resetPassword , resetPasswordPage,changePassword} = require("../controllers/authCtr");
+const express = require("express");
+const localPassport = require("../config/LocalStrategy");
+const passport = require("passport");
+const { loginPage, loginUser, logoutUser, forgotPassword, sendEmailWithOtp, verifyOtp, resetPassword, resetPasswordPage, changePasswordPage, changePassword, profilePage } = require("../controllers/authCtr");
 const { body } = require("express-validator");
-const routes=express.Router();
+const routes = express.Router();
 
 
-routes.get('/',loginPage)
-routes.use('/admin',require('./admin_Routes'))
+routes.get('/', loginPage)
+routes.use('/admin', localPassport.checkAdmin, require('./admin_Routes'))
 // validation ke lia
-routes.post('/login', [
+routes.post('/login', passport.authenticate('local', { failureRediret: '/' }),[
     body("email").isEmail().withMessage("Please enter a valid email"),
     body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters long")
 ], loginUser);
 
-routes.get('/logout',logoutUser)
-routes.get('/forgotPassword',forgotPassword)
-routes.post('/send-email',sendEmailWithOtp)
-routes.post('/verify-otp',verifyOtp)
-routes.get('/verify-otp',verifyOtp)
-routes.post('/reset-password',resetPassword)
-routes.get('/resetPassword',resetPasswordPage)
-routes.get('/change-password',changePassword)
-module.exports=routes;
+routes.get('/logout', logoutUser)
+routes.get('/forgotPassword', forgotPassword)
+routes.post('/send-email', sendEmailWithOtp)
+routes.post('/verify-otp', verifyOtp)
+routes.get('/verify-otp', verifyOtp)
+routes.post('/reset-password', resetPassword)
+routes.get('/resetPassword', resetPasswordPage)
+routes.get('/change-password', changePasswordPage)
+routes.post('/change-password', changePassword)
+routes.get('/profile', profilePage)
+
+
+module.exports = routes;
