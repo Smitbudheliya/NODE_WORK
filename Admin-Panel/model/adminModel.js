@@ -3,7 +3,11 @@ const uploadImage = '/uploads'
 const multer = require('multer')
 const path = require('path')
 const adminSchema = mongoose.Schema({
-    name: {
+    lname: {
+        type: String,
+        required: true
+    },
+    fname: {
         type: String,
         required: true
     },

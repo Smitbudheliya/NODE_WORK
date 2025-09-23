@@ -36,208 +36,109 @@
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-     <% let name = adminData.name.split(" "); %>
+    <%
+      let name = ["", ""]; // Default empty values
+      if (adminData && adminData.name) {
+        name = adminData.name.split(" ");
+      }
+    %>
+
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <form class="form-horizontal" action="/admin/editAdminData/<%= adminData.id %>" method="post" enctype="multipart/form-data">
+          <form class="form-horizontal" action="/admin/editAdminData/<%= adminData.id %>" method="post"
+            enctype="multipart/form-data">
             <div class="card-body">
               <h4 class="card-title">Admin Info</h4>
               <div class="form-group row">
-                <label
-                  for="fname"
-                  class="col-sm-3 text-right control-label col-form-label"
-                  >First Name</label
-                >
+                <label for="fname" class="col-sm-3 text-right control-label col-form-label">First Name</label>
                 <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="fname"
-                    name = "fname"
-                    placeholder="First Name Here"
-                    value="<%= name[0] %>"
-                  />
+                  <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name Here"
+                    value="<%= name[0] %>" />
                 </div>
               </div>
               <div class="form-group row">
-                <label
-                  for="lname"
-                  class="col-sm-3 text-right control-label col-form-label"
-                  >Last Name</label
-                >
-                 <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="fname"
-                    name="lname"
-                    placeholder="Enter Last Name "
-                    value="<%= name[1] %>"
-                  />
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name"
+                    value="<%= name[1] %>" />
                 </div>
               </div>
               <div class="form-group row">
-                <label
-                  for="lname"
-                  class="col-sm-3 text-right control-label col-form-label"
-                  >Email</label
-                >
+                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Email</label>
                 <div class="col-sm-9">
-                  <input
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    id="lname"
-                    placeholder=" Enter Email"
-                    value="<%= adminData.email %>"
-                  />
+                  <input type="email" name="email" class="form-control" id="lname" placeholder="Enter Email"
+                    value="<%= adminData.email || '' %>" />
                 </div>
               </div>
-             
-             
-               <div class="form-group row">
-              <label class="col-md-3">Gender</label>
-              <div class="col-md-9">
-                <div class="custom-control custom-radio">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="customControlValidation1"
-                    value="male" 
-                     name="gender"
-                        required
-                    <% if(adminData.gender == "male") { %>
-                        <%= 'checked ' %>
-                     <%} %>   
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="customControlValidation1"
-                    >Male</label
-                  >
-                </div>
-                <div class="custom-control custom-radio">
-                  <input
-                    type="radio"
-                    class="custom-control-input"
-                    id="customControlValidation2"
-                   
-                    value="female"
-                    name="gender"
-                    required
-                    <% if(adminData.gender == "female") { %>
-                        <%= 'checked' %>
-                   <% } %>
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="customControlValidation2"
-                    >Female</label
-                  >
-                </div>
-               
-              </div>
-            </div>
-                  <div class="form-group row">
-              <label class="col-md-3">Qualification</label>
-              <div class="col-md-9">
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customControlAutosizing1"
-                    name="qualification"
-                    value="10th"
-                    <% if(adminData.qualification.includes('10th')) { %> <%= "checked" %><% } %>
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="customControlAutosizing1"
-                    >10th</label
-                  >
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customControlAutosizing2"
-                    name="qualification"
-                    value="12th"
-                    <% if(adminData.qualification.includes('12th')) { %> <%= "checked" %><% }  %>
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="customControlAutosizing2"
-                    >12th</label
-                  >
-                </div>
-                <div class="custom-control custom-checkbox mr-sm-2">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customControlAutosizing3"
-                    name="qualification"
-                    value="Granguted"
-                    <% if(adminData.qualification.includes('Granguted')) { %> <%= "checked" %> <% } %>
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="customControlAutosizing3"
-                    >Granguted</label
-                  >
-                </div>
-              </div>
-            </div>
 
-             <div class="form-group row">
-              <label class="col-md-3 m-t-15">Select City</label>
-              <div class="col-md-9">
-                <select
-                  class="select2 form-control m-t-15"
-                  style="height: 36px; width: 100%"
-                  name="city"
-                >
-                  <option value="">----select-----</option>
-                  <option value="Surat" <% if(adminData.city == "Surat" ) { %>
-                    <%= "selected" %>
-                <%  } %> >Surat</option>
-                  <option value="Ahmedabad"<% if(adminData.city == "Ahmedabad") { %>
-                    <%= 'selected' %>
-                 <% } %>>Ahmedabad</option>
-                  <option value="Baroda" <% if(adminData.city == "Baroda" ) { %>
-                    <%= 'selected' %>
-                <%  } %>>Baroda</option>
-                  <option value="Rajkot" <% if(adminData.city == "Rajkot") { %>
-                    <%= 'selected' %>
-                    <% } %>>Rajkot</option>
-                </select>
-              </div>
-           
-            </div>
-                  <div class="form-group row">
-              <label class="col-md-3">File Upload</label>
-              <div class="col-md-9">
-                <div class="custom-file">
-                  <input
-                    type="file"
-                    class="custom-file-input"
-                    id="validatedCustomFile"
-                    name="profile"
-                
-                  />
-                  <label class="custom-file-label" for="validatedCustomFile"
-                    >Choose file...</label><img src="/uploads/<%=adminData.profile %>" width="100" height="100" alt="">
+              <div class="form-group row">
+                <label class="col-md-3">Gender</label>
+                <div class="col-md-9">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="customControlValidation1" value="male"
+                      name="gender" required <% if(adminData.gender=="male") { %> checked <% } %> />
+                    <label class="custom-control-label" for="customControlValidation1">Male</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="customControlValidation2" value="female"
+                      name="gender" required <% if(adminData.gender=="female") { %> checked <% } %> />
+                    <label class="custom-control-label" for="customControlValidation2">Female</label>
+                  </div>
                 </div>
               </div>
-            </div>
               <div class="form-group row">
-                <label
-                  for="cono1"
-                  class="col-sm-3 text-right control-label col-form-label"
-                  >Message</label  >
+                <label class="col-md-3">Qualification</label>
+                <div class="col-md-9">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing1"
+                      name="qualification" value="10th" <% if(adminData.qualification.includes('10th')) { %>
+                      checked <% } %> />
+                    <label class="custom-control-label" for="customControlAutosizing1">10th</label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing2"
+                      name="qualification" value="12th" <% if(adminData.qualification.includes('12th')) { %>
+                      checked <% } %> />
+                    <label class="custom-control-label" for="customControlAutosizing2">12th</label>
+                  </div>
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing3"
+                      name="qualification" value="Graduated" <% if(adminData.qualification.includes('Graduated')) { %>
+                      checked <% } %> />
+                    <label class="custom-control-label" for="customControlAutosizing3">Graduated</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-3 m-t-15">Select City</label>
+                <div class="col-md-9">
+                  <select class="select2 form-control m-t-15" style="height: 36px; width: 100%" name="city">
+                    <option value="">----select-----</option>
+                    <option value="Surat" <% if(adminData.city=="Surat") { %> selected <% } %> >Surat</option>
+                    <option value="Ahmedabad" <% if(adminData.city=="Ahmedabad") { %> selected <% } %>>Ahmedabad</option>
+                    <option value="Baroda" <% if(adminData.city=="Baroda") { %> selected <% } %>>Baroda</option>
+                    <option value="Rajkot" <% if(adminData.city=="Rajkot") { %> selected <% } %>>Rajkot</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3">File Upload</label>
+                <div class="col-md-9">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" name="profile" />
+                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                    <% if(adminData.profile) { %>
+                      <img src="/uploads/<%= adminData.profile %>" width="100" height="100" alt="">
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Message</label>
                 <div class="col-sm-9">
-                  <textarea class="form-control" name="message"><%= adminData.message %> </textarea>
+                  <textarea class="form-control" name="message"><%= adminData.message || '' %></textarea>
                 </div>
               </div>
             </div>
@@ -248,15 +149,10 @@
             </div>
           </form>
         </div>
-
-        
-        
-          
-          </div>
-        </div>
       </div>
     </div>
   </div>
-
-  <%- include("footer") %>
 </div>
+</div>
+
+<%- include("footer") %>

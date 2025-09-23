@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/AdminData')
+// mongoose.connect('mongodb://localhost:27017/AdminData')
+mongoose.connect('mongodb+srv://smit:smit7768@cluster0.axybcb4.mongodb.net/adminPanel')
+
 const db = mongoose.connection;
 
 db.once('open',(err) => {
