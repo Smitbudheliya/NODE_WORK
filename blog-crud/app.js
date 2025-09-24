@@ -35,6 +35,13 @@ app.get('/show', async (req, res) => {
     });
 });
 
+app.get('/readmore/:id', async (req, res) => {
+    let blogId = req.params.id;
+    let data = await TodoModel.findById(blogId);
+    return res.render('readmore', { blog: data });
+});
+
+
 app.post('/formAdd', upload.single('profile'), async (req, res) => {
     console.log(req.body);
     console.log(req.file);

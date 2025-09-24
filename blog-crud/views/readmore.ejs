@@ -1,20 +1,67 @@
-<div class="container">
-    <div class="row">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Blog</title>
+    <style>
+        body {
+            background: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .blog-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .category-badge {
+            background: #ffe7d4;
+            color: #ff7b00;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .btn-read {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
         <div class="blog-card">
-            <img src="/uploads/<%= val.profile %>" alt="<%= val.title %>">
-            <div class="card-body">
+            <img src="/uploads/<%= blog.profile %>" alt="<%= blog.title %>">
+            <div>
                 <span class="category-badge">
-                    <%= val.category %>
+                    <%= blog.category %>
                 </span>
-                <h5>
-                    <%= val.title %>
-                </h5>
-                <p>
-                    <%= val.description %>
-                </p>
-                <a href="/views/show.ejs" class="btn-read">back</a>
+                <h1><%= blog.title %></h1>
+                <p><%= blog.description %></p>
+                <!-- You can also display more details here if needed -->
+                <a href="/show" class="btn-read">Back</a>
             </div>
-        </div>
-    </div>
-</div>
+        </div

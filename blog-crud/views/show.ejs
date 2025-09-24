@@ -157,12 +157,6 @@
   <!-- Navbar -->
   <nav class="navbar">
     <a class="navbar-brand" href="/">MyBlog</a>
-
-    <form class="search-box">
-      <input type="search" placeholder="Search blogs...">
-      <button type="submit">Search</button>
-    </form>
-
     <div class="navbar-actions">
       <a href="/" class="btn btn-outline-primary">Add Blog</a>
       <a href="/show" class="btn btn-primary">Show Blogs</a>
@@ -174,10 +168,11 @@
     <div class="row">
       <% blog.forEach((val)=> { %>
         <div class="blog-card">
-          <img src="/uploads/<%= val.profile %>" alt="<%= val.title %>">
+           <a href="/readmore/<%= val._id %>"><img src="/uploads/<%= val.profile %>" alt="<%= val.title %>"></a>
+          
           <div class="card-body">
             <span class="category-badge">
-              <%= val.category %>
+              <%= val.category %>A  
             </span>
             <h5>
               <%= val.title %>
@@ -185,10 +180,11 @@
             <p>
               <%= val.description %>
             </p>
-            <a href="readmore.ejs" class="btn-read">Read more</a>
+            <!-- <a href="/readmore/<%= val._id %>" class="btn-read">Read more</a> -->
+
           </div>
         </div>
-      <% }) %>
+        <% }) %>
     </div>
   </div>
 </body>
