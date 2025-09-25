@@ -1,0 +1,43 @@
+<%- include("../header") %>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Add Sub Category</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form action="/subCategory/addSubCategory" method="post">
+                        <div class="card-body">
+                            <h4 class="card-title">Sub Category</h4>
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <select name="category" required class="form-control">
+                                    <option value="">Select Category</option>
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category._id %>"><%= category.categoryName %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Sub Category Name</label>
+                                <input type="text" name="subcategory" class="form-control" placeholder="Sub Category Name" required>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Add Sub Category</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../footer") %>

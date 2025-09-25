@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb+srv://smit:smit7768@cluster0.axybcb4.mongodb.net/adminPanel')
+mongoose.connect('mongodb+srv://smit:smit7768@cluster0.axybcb4.mongodb.net/cookie')
 
 
 
