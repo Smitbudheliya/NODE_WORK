@@ -24,5 +24,6 @@ routes.use('/admin', passport.checkAdmin, require('./admin_Routes'))
 routes.use("/blog", require("./blog_Routes"));
 routes.use("/category", require("./category_Routes"));
 routes.use("/subCategory", require("./subCategory_routes"));
+routes.use("/extraCategory", require("./extraCategory_routes"));
 
 module.exports = routes;

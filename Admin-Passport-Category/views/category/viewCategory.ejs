@@ -18,36 +18,37 @@
         </div>
       </div>
 
-      <!-- Category Cards Layout -->
+      <!-- Category Cards -->
       <div class="row">
         <% categories.map((val, index)=> { %>
           <div class="col-md-4 col-lg-3 mb-4">
             <div class="card shadow border-0 h-100 overflow-hidden">
 
-              <!-- Full Image (perfectly fit) -->
+
               <div style="width:100%; height:180px; overflow:hidden;">
-                <img src="<%= val.category.image %>" alt="Category" class="card-img-top w-100 h-100" style="object-fit: cover;">
+                <img src="<%= val.image %>" alt="Category" class="card-img-top w-100 h-100" style="object-fit: cover;">
               </div>
-
-              <!-- Content -->
-              <div class="card-body text-center">
-                <h5 class="fw-bold mb-1">
-                  <%= val.category.categoryName %>
-                </h5>
-                <p class="text-muted">ID: <%= ++index %>
-                </p>
-                <div class="d-flex justify-content-center gap-2 mt-3">
-                  <a href="/category/editCategory/<%= val._id %>" class="btn btn-sm btn-primary px-3">✏️ Edit</a>
-                  <a href="/category/deleteCategory/<%= val._id %>" class="btn btn-sm btn-danger px-3">🗑 Delete</a>
-                </div>
-              </div>
-
             </div>
-          </div>
-          <% }) %>
-      </div>
 
+            <!-- Content -->
+            <div class="card-body text-center">
+              <h5 class="fw-bold mb-1">
+                <%= val.categoryName %>
+              </h5>
+              <p class="text-muted">ID: <%= ++index %>
+              </p>
+              <div class="d-flex justify-content-center gap-2 mt-3">
+                <a href="/category/editCategory/<%= val._id %>" class="btn btn-sm btn-primary px-3">✏️ Edit</a>
+                <a href="/category/deleteCategory/<%= val._id %>" class="btn btn-sm btn-danger px-3">🗑 Delete</a>
+              </div>
+            </div>
+
+          </div>
+      </div>
+      <% }) %>
     </div>
+
+  </div>
   </div>
 
   <%- include('../footer') %>
